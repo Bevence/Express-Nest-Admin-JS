@@ -1,0 +1,23 @@
+services:
+  # server:
+  # build:
+  #   context: .
+  # environment:
+  #   NODE_ENV: development
+  # ports:
+  #   - 4000:4000
+
+  postgres_db:
+    container_name: adminjs-example
+    image: postgres
+    environment:
+      - POSTGRES_DB=adminjs
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres_adminjs_db:/var/lib/postgresql/data
+
+volumes:
+  postgres_adminjs_db:

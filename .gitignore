@@ -1,0 +1,8 @@
+/node_modules
+/dist
+/.adminjs
+.env
+
+/public
+!public/favicon.ico
+!public/logo.png

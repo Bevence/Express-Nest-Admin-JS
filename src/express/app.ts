@@ -9,6 +9,8 @@ import {
   ErrorType,
 } from "./utils/ApiError.js";
 import routes from "./route.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocs from "./swagger.js";
 
 process.on("uncaughtException", (e) => {
   logger.error(e);
@@ -26,7 +28,12 @@ app.use(cors({ origin: APP_CONFIG.CORS_URL, optionsSuccessStatus: 200 }));
 app.use("/ping", (req: Request, res: Response) => {
   res.send("pong");
 });
-app.use(routes);
+app.use(
+  "/express-api-docs",
+  swaggerUi.serveFiles(swaggerDocs),
+  swaggerUi.setup(swaggerDocs)
+);
+app.use("/api/v1", routes);
 
 // catch 404 and forward to error handler
 app.use((_req: Request, _res: Response, next: NextFunction) =>

@@ -10,6 +10,8 @@ const envVariableSchema = Joi.object()
       .required(),
     PORT: Joi.number().positive().required(),
     CORS_URL: Joi.string().required(),
+    APP_NAME: Joi.string().required(),
+    APP_URL: Joi.string().required(),
   })
   .unknown();
 
@@ -21,8 +23,8 @@ if (error) {
   throw new Error(`Config validation error: ${error.message}`);
 }
 
-const { NODE_ENV, PORT, CORS_URL } = value;
+const { NODE_ENV, PORT, CORS_URL, APP_NAME, APP_URL } = value;
 
-const APP_CONFIG = { NODE_ENV, PORT, CORS_URL };
+const APP_CONFIG = { NODE_ENV, PORT, CORS_URL, APP_NAME, APP_URL };
 
 export { APP_CONFIG };
